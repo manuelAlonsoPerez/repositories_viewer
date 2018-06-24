@@ -28,7 +28,6 @@ export function reposFetchDataSuccess(repos) {
 export function reposFetchData(url) {
     return (dispatch) => {
         dispatch(reposAreLoading(true));
-
         axios.get(url)
             .then((response) => {
                 if (response.status !== 200) {

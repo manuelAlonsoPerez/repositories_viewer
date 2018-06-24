@@ -20,11 +20,13 @@ class MainPage extends Component {
 
     render() {
         return (
-            <div className='mainPage-container'>
+            <div className='mainpage-main-container'>
                 <header className='mainpage-header'>
                     <h1 className='mainpage-title'>TOP JS REPOSITORIES </h1>
                 </header>
-                <p className='mainpage-description'>This is a list with the top 100 JS repositories at gitHub</p>
+                <p className='mainpage-description'>
+                    This is a list with the top 100 JS repositories from gitHub
+                </p>
                 <RepoTable />
             </div>
         );

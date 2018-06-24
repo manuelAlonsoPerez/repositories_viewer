@@ -2,11 +2,11 @@ table,th, td{
     border: 1px solid black;
 }
 
-.header-cell, .repo-cell, .buttons, .indexes{
+.error-text, .loading-text, .header-cell, .repo-cell, .buttons, .indexes{
     font-family: Monserrat, sans-serif;
 }
 
-.main-container{
+.repos-main-container{
     width: 100%;
     height: 90vh;
 }
@@ -18,6 +18,13 @@ table,th, td{
     border: 3px solid black;
 }
 
+.error-text, .loading-text{
+    color: grey;
+    font-weight: 200;
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
 .header-cell{
     font-size: 1.2em;
     padding: 5px 10px;
@@ -25,19 +32,38 @@ table,th, td{
 }
 
 .repo-cell{
-    padding: 5px 10px;
+    padding: 5px;
+    margin: 0 auto;
     font-weight: 300;
+}
+
+.repo-cell-icon{
+    margin: 0 auto;
+}
+
+.repo-cell-name{
+    width: 250px;
+}
+
+.repo-cell-stats{
+    width: 7%;
 }
 
 .repo-cell-description{
     text-align: left;
+    padding-left: 10px;
+}
+
+.repo-cell-name, .repo-cell-url, .repo-cell-stats, .indexes{
+    text-align: center;
 }
 
 .main-buttons-container{
     display: flex;
-    width:90%;
+    width:50%;
     margin: 10px auto;
 }
+
 .buttons{
     display: inline-block;
     flex-basis: 20%;
@@ -53,7 +79,6 @@ table,th, td{
     display: inline-block;
     width: 60%;
     margin: 10px auto;
-    text-align: center;
     font-size: 1.3em;
     font-weight: 500;
 }

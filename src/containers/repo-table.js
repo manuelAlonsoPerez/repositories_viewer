@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import loading_icon from '../assets/loading.webp';
 
 import '../styles/RepoTable.css';
 
@@ -13,18 +14,9 @@ class RepoTable extends Component {
             reposToRender: []
         }
         this.sliceRepos = this.sliceRepos.bind(this);
-        this.renderRepos = this.renderRepos.bind(this);
         this.showPrevious = this.showPrevious.bind(this);
         this.showNext = this.showNext.bind(this);
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.repos !== this.props.repos) {
-            this.sliceRepos();
-        }
-        if (prevState.startIndex !== this.state.startIndex) {
-            this.sliceRepos();
-        }
+        this.renderRepos = this.renderRepos.bind(this);
     }
 
     sliceRepos() {
@@ -41,7 +33,6 @@ class RepoTable extends Component {
                 startIndex: index - 20
             })
         }
-
     }
 
     showNext() {
@@ -51,7 +42,12 @@ class RepoTable extends Component {
                 startIndex: index + 20
             })
         }
+    }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.repos !== this.props.repos || prevState.startIndex !== this.state.startIndex) {
+            this.sliceRepos();
+        }
     }
 
     renderRepos() {
@@ -59,17 +55,22 @@ class RepoTable extends Component {
             this.state.reposToRender.map((repo) => {
                 return (
                     <tr key={repo.id}>
-                        <th className='repo-cell'>
-                            <img src={repo.owner.avatar_url} alt={repo.full_name} width='25px' height='25px' />
-                        </th>
-                        <th className='repo-cell'>{repo.full_name}</th>
-                        <th className='repo-cell' width='50px'>
-                            <a href={repo.html_url} target='_blank'>url</a>
-                        </th>
-                        <th className='repo-cell' >{repo.stargazers_count}</th>
-                        <th className='repo-cell'>{repo.forks_count}</th>
-                        <th className='repo-cell'>{repo.open_issues_count}</th>
-                        <th className='repo-cell repo-cell-description'>{repo.description}</th>
+                        <td className='repo-cell repo-cell-icon' width='50px'>
+                            <img
+                                src={repo.owner.avatar_url}
+                                alt={repo.full_name}
+                                width='30px'
+                                height='30px'
+                                style={{ marginLeft: '10px', marginRight: '10px' }} />
+                        </td>
+                        <td className='repo-cell repo-cell-name'> {repo.full_name} </td>
+                        <td className='repo-cell repo-cell-url' width='40px'>
+                            <a href={repo.html_url} target='_blank'> url </a>
+                        </td>
+                        <td className='repo-cell repo-cell-stats'> {repo.stargazers_count} </td>
+                        <td className='repo-cell repo-cell-stats'> {repo.forks_count} </td>
+                        <td className='repo-cell repo-cell-stats'> {repo.open_issues_count} </td>
+                        <td className='repo-cell repo-cell-description'> {repo.description} </td>
                     </tr >
                 );
             })
@@ -78,21 +79,20 @@ class RepoTable extends Component {
 
     render() {
         if (this.props.hasError) {
-            return <p>Sorry! There was an error loading the items</p>;
-        }
-
-        if (this.props.isLoading) {
-            return <p style={{ textAlign: 'center' }}>Loading…</p>;
-        }
-
-        if (!this.props.repos) {
             return (
-                <div> loading...</div>
-            );
+                <p className='error-text'>Sorry! There was an error loading the items</p>
+            )
         }
-
+        if (this.props.isLoading) {
+            return (
+                <div>
+                    <img src={loading_icon} alt='loading' width='85px' height='85px' />
+                    <p className='loading-text'>Loading…</p>
+                </div>
+            )
+        }
         return (
-            <div className='main-container'>
+            <div className='repos-main-container'>
                 <table className='table-container' cellSpacing='0'>
                     <thead className='table-header'>
                         <tr>
