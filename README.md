@@ -2,7 +2,7 @@
 
 This project creates a table from the top 100 most popular Js repositories on gitHub. The repositories are  fetched from  the [following](https://api.github.com/search/repositories?q=language:javascript&sort=stars&order=desc&per_page=100 "following") Api.
 
-The table loader component allows us to see 20 repositories  at a time  with its details, having the possibility to navigate to see the rest of repositories fetched.
+The table loader component allows us to see 20 repositories  at a time  with its details, having the possibility to navigate through the table to see the rest of repositories fetched.
 
 ## Installing:
 
@@ -38,7 +38,7 @@ Check also npm is installed
 
 	`npm start`
 
-5.Now you can open the project in you browser at:
+5. Now you can open the project in you browser at:
 
 [http://localhost:3000](http://localhost:3000/ "http://localhost:3000/")
 
