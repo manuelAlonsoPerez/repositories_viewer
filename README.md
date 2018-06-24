@@ -53,7 +53,7 @@ The  project is tested and working on Chrome, Firefox and Safari. API calls are 
 
 The store is connected to redux thunk middleware to add a more robust handling of async API calls. And is also connected  to redux-devtools for easier debugging.
 
-![](./blackjackWebApp.png)
+![](./src/assets/repos_viewer.png)
 
 
 
