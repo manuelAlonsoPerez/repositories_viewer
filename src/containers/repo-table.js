@@ -17,6 +17,7 @@ class RepoTable extends Component {
         this.showPrevious = this.showPrevious.bind(this);
         this.showNext = this.showNext.bind(this);
         this.renderRepos = this.renderRepos.bind(this);
+        this.showPage = this.showPage.bind(this);
     }
 
     sliceRepos() {
@@ -44,15 +45,17 @@ class RepoTable extends Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.repos !== this.props.repos || prevState.startIndex !== this.state.startIndex) {
-            this.sliceRepos();
-        }
+    showPage(number) {
+        let startIndex = (number - 1) * 20;
+        this.setState({ startIndex: startIndex });
     }
 
+
     renderRepos() {
+        let reposToShow = this.props.repos.slice(this.state.startIndex, this.state.startIndex + 20);
+
         return (
-            this.state.reposToRender.map((repo) => {
+            reposToShow.map((repo) => {
                 return (
                     <tr key={repo.id}>
                         <td className='repo-cell repo-cell-icon' width='50px'>
@@ -112,16 +115,28 @@ class RepoTable extends Component {
                 <div className='main-buttons-container'>
                     <button
                         className='buttons'
-                        onClick={this.showPrevious}>
-                        Previous
+                        onClick={() => this.showPage(1)}>
+                        1
                     </button>
-                    <div className='indexes'>
-                        {this.state.startIndex + 1} / {this.state.startIndex + 20}
-                    </div>
                     <button
                         className='buttons'
-                        onClick={this.showNext}>
-                        Next
+                        onClick={() => this.showPage(2)}>
+                        2
+                    </button>
+                    <button
+                        className='buttons'
+                        onClick={() => this.showPage(3)}>
+                        3
+                    </button>
+                    <button
+                        className='buttons'
+                        onClick={() => this.showPage(4)}>
+                        4
+                    </button>
+                    <button
+                        className='buttons'
+                        onClick={() => this.showPage(5)}>
+                        5
                     </button>
                 </div>
             </div >
